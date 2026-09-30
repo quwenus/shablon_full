@@ -5,13 +5,10 @@ import Button from 'react-bootstrap/Button'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-const RegForm = () => {
+const LogForm = () => {
     const [formData, setFormData] = useState({
         login: '',
-        password: '',
-        fio: '',
-        phone: '',
-        email: ''
+        password: ''
     })
 
     const onInputChange = (e) => {
@@ -25,7 +22,7 @@ const RegForm = () => {
     const onFormSubmit = async (e) => {
         e.preventDefault();
 
-        const response = await fetch("http://localhost:5000/reg", {
+        const response = await fetch("http://localhost:5000/log", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -38,7 +35,7 @@ const RegForm = () => {
         if (!response.ok) {
             alert(data.message)
         } else {
-            alert(`Успешная регистрация`)
+            alert(`Успешно`)
         }
     }
 
@@ -59,36 +56,15 @@ const RegForm = () => {
                         pattern='[A-Za-z0-9]+' name='password' value={formData.password} onChange={onInputChange} minLength={6} />
                 </Form.Group>
 
-                <Form.Group >
-                    <Form.Label>ФИО</Form.Label>
-                    <Form.Control data-testid="reg-fullname"
-                        type="text" placeholder="ФИО" required title='ФИО должно быть не менее 6 символов, кириллица'
-                        pattern='[А-Яа-яёЁ\s]+' name='fio' value={formData.fio} onChange={onInputChange} minLength={6} />
-                </Form.Group>
-
-                <Form.Group >
-                    <Form.Label>Телефон</Form.Label>
-                    <Form.Control data-testid="reg-phone"
-                        type="tel" placeholder="8(xxx)xxx-xx-xx" required title='Телефон может использовать только цифры' pattern='8\([0-9]{3}\)[0-9]{3}-[0-9]{2}-[0-9]{2}'
-                        name='phone' value={formData.phone} onChange={onInputChange} />
-                </Form.Group>
-
-                <Form.Group >
-                    <Form.Label>Почта</Form.Label>
-                    <Form.Control data-testid="reg-email"
-                        type="email" placeholder="Почта" required title='Почта должна быть не менее 6 символов, латиница и цифры'
-                        name='email' value={formData.email} onChange={onInputChange} />
-                </Form.Group>
-
 
                 <Button variant="primary" type="submit" data-testid="reg-submit" id='btn'>
-                    Создать пользователя
+                    Войти
                 </Button>
 
             </Form>
-            <Link to="/log">Есть аккаунт? Войти</Link>
+            <Link to="/">Еще не зарегистрированы? Регистрация</Link>
         </>
     )
 }
 
-export default RegForm;
+export default LogForm;

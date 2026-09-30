@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 
 import RegPage from "./pages/RegPage";
+import LogPage from './pages/LogPage';
 
 import logo from '../src/assets/img/logotip.jpg'
 
@@ -17,7 +18,7 @@ const App = () => {
             <main className='container'>
                 <Routes>
                     <Route path='/' element={<RegPage />} />
-                    <Route path='/log' />
+                    <Route path='/log' element={<LogPage />} />
                 </Routes>
             </main>
         </>
